@@ -277,6 +277,27 @@ class PdoGsb{
 		}
 		return $lesMois;
 	}
+        
+        //recupere les mois disponible de CR
+        public function getLesMoisDisponiblesCL($idVisiteur){
+		$req = "select fichefrais.mois as mois from  fichefrais where fichefrais.idvisiteur ='$idVisiteur' and idEtat = 'CL'
+		order by fichefrais.mois desc ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lesMois =array();
+		$laLigne = $res->fetch();
+		while($laLigne != null)	{
+			$mois = $laLigne['mois'];
+			$numAnnee =substr( $mois,0,4);
+			$numMois =substr( $mois,4,2);
+			$lesMois["$mois"]=array(
+		     "mois"=>"$mois",
+		    "numAnnee"  => "$numAnnee",
+			"numMois"  => "$numMois"
+             );
+			$laLigne = $res->fetch(); 		
+		}
+		return $lesMois;
+	}
 /**
  * Retourne les informations d'une fiche de frais d'un visiteur pour un mois donné
  

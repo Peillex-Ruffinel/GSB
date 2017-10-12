@@ -5,7 +5,7 @@
       <div class="corpsForm">
          
       <p>
-        <label for="lstMois" accesskey="n">Salarié : </label>
+        <label for="lstVisiteur" accesskey="n">Salarié : </label>
         <select id="lstVisiteur" name="lstVisiteur">
             <?php
                 foreach ($lesVisiteurs as $unVisiteur)

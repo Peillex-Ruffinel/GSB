@@ -23,13 +23,15 @@ switch($action){
                 $idVisiteur =  $_REQUEST['lstVisiteur'];
                 //print_r($idVisiteur);
                 $_SESSION['idV']=$idVisiteur;
-		$lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
+		$lesMois=$pdo->getLesMoisDisponiblesCL($idVisiteur);
 		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
 		// on demande toutes les clés, et on prend la première,
 		// les mois étant triés décroissants
-		$lesCles = array_keys( $lesMois );
-		$moisASelectionner = $lesCles[0];
-		include("vues/v_listeMois.php");
+                    if(count($lesMois)!=0){
+                    $lesCles = array_keys( $lesMois );
+                    $moisASelectionner = $lesCles[0];
+                    }
+                    include("vues/v_listeMois.php");
 		break;
         }
         
@@ -37,8 +39,10 @@ switch($action){
 		$leMois = $_REQUEST['lstMois'];
                 if ($_SESSION['statut']=='comptable'){
                     $idVisiteur=$_SESSION['idV'];
+                    $lesMois=$pdo->getLesMoisDisponiblesCL($idVisiteur);
+                }else{
+                    $lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
                 }
-		$lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
 		$moisASelectionner = $leMois;
 		include("vues/v_listeMois.php");
 		$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$leMois);
