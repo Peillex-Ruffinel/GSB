@@ -60,6 +60,14 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
+        
+        public function getInfosComptable($login, $mdp){
+		$req = "select comptable.idC as id, comptable.nomC as nom, comptable.prenomC as prenom from comptable 
+		where comptable.loginC='$login' and comptable.mdpC='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	} 
 
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
@@ -297,5 +305,14 @@ class PdoGsb{
 		where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
+
+//Obtient l'Id de chaque visiteur
+        
+        public function getVisiteurs(){
+            $req = "select id, nom, prenom from visiteur";
+            $rs = PdoGsb::$monPdo->query($req);
+            $lesVisiteurs = $rs->fetchAll();
+            return $lesVisiteurs;
+        }
 }
 ?>

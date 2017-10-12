@@ -20,16 +20,17 @@ function estConnecte(){
  * @param $nom
  * @param $prenom
  */
-function connecter($id,$nom,$prenom){
+function connecter($id,$nom,$prenom, $statut){
 	$_SESSION['idVisiteur']= $id; 
 	$_SESSION['nom']= $nom;
 	$_SESSION['prenom']= $prenom;
+        $_SESSION['statut']= $statut;
 }
 /**
  * Détruit la session active
  */
 function deconnecter(){
-	session_destroy();
+    session_destroy();
 }
 /**
  * Transforme une date au format français jj/mm/aaaa vers le format anglais aaaa-mm-jj
