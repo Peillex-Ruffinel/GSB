@@ -54,6 +54,21 @@
              </tr>
         <?php 
           }
+          
+          if(isset($_SESSION['statut'])=='comptable'){
+              
+              ?>
+             
+            <!-- A TERMINER ! 
+            <form methode='POST' action='index.php?uc=etatFrais&action=validerFrais'>
+                <input id="reporte" type="submit" value="Reporter" size="20" />
+                <input id="ok" type="submit" value="Valider" size="20" />
+            </form>-->
+             
+             <?php
+          }
+              
+          
 		?>
     </table>
   </div>

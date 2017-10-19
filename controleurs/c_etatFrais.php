@@ -39,6 +39,7 @@ switch($action){
 		$leMois = $_REQUEST['lstMois'];
                 if ($_SESSION['statut']=='comptable'){
                     $idVisiteur=$_SESSION['idV'];
+                    $_SESSION['mois']=$leMois;
                     $lesMois=$pdo->getLesMoisDisponiblesCL($idVisiteur);
                 }else{
                     $lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
@@ -57,5 +58,11 @@ switch($action){
 		$dateModif =  dateAnglaisVersFrancais($dateModif);
 		include("vues/v_etatFrais.php");
 	}
+        
+        case 'validerFrais':{
+                $idVisiteur=$_SESSION['idV'];
+                $leMois=$_SESSION['mois'];
+                //majEtatFicheFrais($idVisiteur,$leMois,'VA');
+        }
 }
 ?>

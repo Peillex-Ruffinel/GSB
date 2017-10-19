@@ -23,10 +23,9 @@
 				<option value="<?php echo $mois ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
-			
 			}
            
-		   ?>    
+		   ?>
             
         </select>
       </p>
